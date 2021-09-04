@@ -1,0 +1,64 @@
+
+.layui-table-page .layui-laypage a, .layui-table-page .layui-laypage span{
+	border: 1px solid #277bbd !important;
+	background-color:#05172d !important;
+	padding: 0 20px !important;
+	color: #ffffff;
+}
+.layui-table thead tr, .layui-table-click, .layui-table-header,  .layui-table-mend, .layui-table-patch, .layui-table-tool, .layui-table-total, .layui-table-total tr, .layui-table[lay-even] tr:nth-child(even){
+	    background: #05172d !important;
+	    border: 1px none #277bbd !important;
+	    
+		color: #FFFFFF;
+}
+.layui-table{
+	background-color: #05172d !important;
+	color: #a4a88f !important;
+	
+}
+.layui-table-patch{
+	display: none !important;
+}
+
+td{
+	border: 1px solid #277bbd !important;
+	line-height: 17px !important;
+}
+th{
+	border: 1px solid #277bbd !important;
+}
+table{
+	border: 1px solid #277bbd !important;
+	height: 100% !important;
+}
+.layui-table-page{
+	border: 1px solid #277bbd !important;
+}
+.layui-form{
+	
+	 border: 0px none #277bbd !important;
+	
+	
+}
+/* *{
+	background-color: #05172d;
+	
+}	 */
+ .layui-table-body{
+	height: auto !important;
+} 
+.layui-layer-title{
+	text-align: center !important;
+}
+
+ .layui-table tbody tr:hover{
+	  color: #ffffff;
+	  background-color: #4a4a4a !important;
+	 
+  }
+  .layui-table-page{
+	  background-color: #05172d;
+	  position: absolute !important;
+	  bottom: 15px;
+	  border: 0px none #277bbd !important;
+  }

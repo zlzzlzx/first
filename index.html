@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>朗进智能桥梁检测系统</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/laydate.css">
+    <link rel="stylesheet" href="./css/layui.css">
+	
+   <script src="https://unpkg.com/mapvgl/dist/mapvgl.min.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="./js/canvas.js"></script>
+    <script src="./js/index.js"></script>
+	<script src="./js/laydate.js"></script>
+      
+    
+	<script type="text/javascript" src="//api.map.baidu.com/getscript?type=webgl&v=3.0&ak=OXTEedxspDu4zNrqFBrO42ZMRKU4ilvt"></script>
+	 <script src="https://mapv.baidu.com/gl/examples/static/common.js"></script>
+	 <script src="https://mapv.baidu.com/build/mapv.js"></script>
+	 <script src="https://code.bdstatic.com/npm/mapvgl@1.0.0-beta.131/dist/mapvgl.min.js"></script>
+	
+</head>
+	
+<body>
+    <section class="main rect">
+        <div class="w-topleft">
+            <div class="triangle-topleft">
+                <div class="triangle-topleft-cont"></div>
+            </div>
+        </div>
+        <div id="trange" class="er-range"></div>
+        <div class="w-topright">
+        </div>
+        <div id="toprightText" class="topright-text">下载APP</div>
+        <div id="ercode" class="ercode">
+            <img src="./img/ercode.png">
+        </div>
+        <div class="w-bottomleft">
+            <div class="triangle-bottomleft">
+                <div class="triangle-bottomleft-cont"></div>
+            </div>
+        </div>
+        <div class="w-bottomright">
+            <div class="triangle-bottomright">
+                <div class="triangle-bottomright-cont"></div>
+            </div>
+        </div>
+        <div class="content">
+			
+            <div class="bg" >
+				
+				<div id="map" ></div>
+				
+                <section class="left-cont">
+                    <!-- 左侧矩形一 -->
+                    <div class="inone rectcontent">
+                        <div class="rectcontent-topleft"></div>
+                        <div class="rectcontent-topleft2"></div>
+                        <div class="rectcontent-topright"></div>
+                        <div class="rectcontent-topright2"></div>
+                        <div class="rectcontent-bottomleft"></div>
+                        <div class="rectcontent-bottomleft2"></div>
+                        <div class="rectcontent-bottomright"></div>
+                        <div class="rectcontent-bottomright2"></div>
+                        <div class="inone-cont">
+                            <span>时间</span>
+                            <input id="dateRange" class="date-range" type="text">
+                            <div class="btns bts-active">本月</div>
+                            <div class="btns">本年</div>
+                            <div class="btns">全部</div>
+                            <br />
+                            <input class="search-input" type="text" placeholder="搜索：桥梁名称、项目名称、管理单位、路线">
+                            <i class="search-icon"></i>
+                            <div class="line"></div>
+                        </div>
+                    </div>
+                    <!-- 左侧矩形二 -->
+                    <div class="inone rectcontent">
+                        <div class="rectcontent-topleft"></div>
+                        <div class="rectcontent-topleft2"></div>
+                        <div class="rectcontent-topright"></div>
+                        <div class="rectcontent-topright2"></div>
+                        <div class="rectcontent-bottomleft"></div>
+                        <div class="rectcontent-bottomleft2"></div>
+                        <div class="rectcontent-bottomright"></div>
+                        <div class="rectcontent-bottomright2"></div>
+                        <div class="title">综合看板</div>
+                        <i class="set-icon"></i>
+                        <div class="inone-cont title-bottom">
+                            <div class="pie">
+                                <div class="ring">
+                                    <div id="tutorial"></div>
+                                    <span class="pie-title pie-title-act">检测桥梁(座)</span>
+                                </div>
+                                <div class="ring">
+                                    <div id="tutorial2"></div>
+                                    <span class="pie-title">严重桥梁(座)</span>
+                                </div>
+                                <div class="ring">
+                                    <div id="tutorial3"></div>
+                                    <span class="pie-title">病害记录(条)</span>
+                                </div>
+                                <div class="ring">
+                                    <div id="tutorial4"></div>
+                                    <span class="pie-title">严重伤害(条)</span>
+                                </div>
+
+                                <div class="ring">
+                                    <div id="tutorial5"></div>
+                                    <span class="pie-title">专项检测(条)</span>
+                                </div>
+                                <div class="ring">
+                                    <div id="tutorial6"></div>
+                                    <span class="pie-title">现场人员(人)</span>
+                                </div>
+                                <div class="ring">
+                                    <div id="tutorial7"></div>
+                                    <span class="pie-title">现场设备(个)</span>
+                                </div>
+                                <div class="ring">
+                                    <div id="tutorial8"></div>
+                                    <span class="pie-title">检测时间(天)</span>
+                                </div>
+                            </div>
+                            <div class="intwo-bottom">
+                                <p>数据获取时间：<span id="datatime"></span></p>
+                                <i class="refrash-icon" onclick="refresh()"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 左侧矩形三 -->
+                    <div class="inone rectcontent">
+                        <div class="rectcontent-topleft"></div>
+                        <div class="rectcontent-topleft2"></div>
+                        <div class="rectcontent-topright"></div>
+                        <div class="rectcontent-topright2"></div>
+                        <div class="rectcontent-bottomleft"></div>
+                        <div class="rectcontent-bottomleft2"></div>
+                        <div class="rectcontent-bottomright"></div>
+                        <div class="rectcontent-bottomright2"></div>
+                        <div class="title">项目管理</div>
+                       <div class="lb-btn">
+                           <div class="lb-btnl" id="Padd">
+                               <i class="add-icon"></i>
+                               新增项目
+                           </div>
+                           <div class="lb-btnl">
+                               <i class="check-icon"></i>
+                               选择
+                           </div>
+                       </div>
+             
+                        <div id="itemmant" class="inone-cont title-bottom2">
+                       
+ 
+                        </div>
+                        <div id="pages" class="pages"></div>
+                    </div>
+                </section>
+                <!-- 中部 -->
+                <section class="main-center">
+                    <div class="main-top">
+                        <p>朗进智能桥梁检测系统</p>
+                    </div>
+                    <div class="main-bottom">
+                        <div class="main-bot-bar1"></div>
+                        <div class="main-bot-bar2"></div>
+                        <div class="main-bot-bar3"></div>
+                        <div class="main-bot-bg">
+                            <div class="main-bot-btnl"></div>
+                            <div class="main-bot-cont">
+                                <div class="main-bot-contbtn">
+                                    <div class="main-bot-btn main-bot-btn-active"><i
+                                            class="main-bot-icon main-bot-icon1"></i>检测日志</div>
+                                    <div class="main-bot-btn"><i class="main-bot-icon main-bot-icon2"></i>内页报告</div>
+                                    <div class="main-bot-btn"><i class="main-bot-icon main-bot-icon3"></i>外业服务</div>
+                                    <div class="main-bot-btn"><i class="main-bot-icon main-bot-icon4"></i>项目分析</div>
+                                    <div class="main-bot-btn"><i class="main-bot-icon main-bot-icon1"></i>检测日志</div>
+                                    <div class="main-bot-btn"><i class="main-bot-icon main-bot-icon2"></i>内页报告</div>
+                                    <div class="main-bot-btn"><i class="main-bot-icon main-bot-icon3"></i>外业服务</div>
+                                    <div class="main-bot-btn"><i class="main-bot-icon main-bot-icon4"></i>项目分析</div>
+                                </div>
+                            </div>
+                            <div class="main-bot-btnr"></div>
+                        </div>
+                        <div class="main-bot-bar4"></div>
+                        <div class="main-bot-bar5"></div>
+                        <div class="main-bot-bar6"></div>
+                    </div>
+                </section>
+
+                <section class="right-cont">
+                    <!-- 右侧顶部 -->
+                    <div class="right-top">
+                        <div id="rightcontent">
+                            <div class="rigtop-item">
+                               
+                                <div class="rigtop-cy">
+                                    <i class="icon rigtop-icon"></i>
+                                </div>
+                                <div  id="people" class="rigtop-ract">人员信息管理</div>
+                            </div>
+                           <div class="rigtop-item ">
+                               
+                               <div class="rigtop-cy">
+                                   <i class="icon rigtop-icon"></i>
+                               </div>
+                               <div class="rigtop-ract">设备信息管理</div>
+                           </div>
+                            <div class="rigtop-item ">
+                                
+                                <div class="rigtop-cy">
+                                    <i class="icon rigtop-icon"></i>
+                                </div>
+                                <div class="rigtop-ract">单位信息管理</div>
+                            </div>
+                            <div class="rigtop-item">
+                                
+                                <div class="rigtop-cy">
+                                    <i class="icon rigtop-icon"></i>
+                                </div>
+                                <div class="rigtop-ract">路线管理</div>
+                            </div>
+                            
+                        </div>
+                        <div id="rightbtn" class="rigtop-item">
+                            <div class="rigtop-cy">
+                                <i class="icon rigtop-icon2"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rectcontent right-ract">
+                        <div class="rectcontent-topleft"></div>
+                        <div class="rectcontent-topleft2"></div>
+                        <div class="rectcontent-topright"></div>
+                        <div class="rectcontent-topright2"></div>
+                        <div class="rectcontent-bottomleft"></div>
+                        <div class="rectcontent-bottomleft2"></div>
+                        <div class="rectcontent-bottomright"></div>
+                        <div class="rectcontent-bottomright2"></div>
+                        <div class="inner">
+                            <div class="inner-btn">
+                                <i class="icon cycle"></i>
+                                <span>检测桥梁</span>
+                            </div>
+                            <div class="inner-btn">
+                                <i class="icon person"></i>
+                                <span>现场人员</span>
+                            </div>
+                            <div class="inner-btn">
+                                <i class="icon shebei"></i>
+                                <span>现场设备</span>
+                            </div>
+                            <div class="inner-btn inner-btn-active">
+                                <i class="icon edit"></i>
+                                <span>病害记录</span>
+                            </div>
+                            <div class="inner-btn">
+                                <i class="icon bar"></i>
+                                <span>专项数量 </span>
+                            </div>
+                            <div class="inner-btn">
+                                <i class="icon postion"></i>
+                                <span>我的位置 </span>
+                            </div>
+                            <div class="inner-btn">
+                                <i class="icon screen"></i>
+                                <span>全屏 </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="right-person-bg"></div>
+                    <div id="personCenter" class="right-person"></div>
+
+                    <!-- 右侧底部 -->
+                    <div id="levelBox" class="inone rectcontent rightbot">
+                        <div class="rectcontent-topleft"></div>
+                        <div class="rectcontent-topleft2"></div>
+                        <div class="rectcontent-topright"></div>
+                        <div class="rectcontent-topright2"></div>
+                        <div class="rectcontent-bottomleft"></div>
+                        <div class="rectcontent-bottomleft2"></div>
+                        <div class="rectcontent-bottomright"></div>
+                        <div class="rectcontent-bottomright2"></div>
+                        <div class="inone-cont">
+                            <div class="rigbt">
+                                <div class="rigbt-color"></div>
+                                <span>1类</span>
+                                <span>(A级)</span>
+                                <span>桥梁</span>
+                            </div>
+                            <div class="rigbt">
+                                <div class="rigbt-color"></div>
+                                <span>2类</span>
+                                <span>(B级)</span>
+                                <span>桥梁</span>
+                            </div>
+                            <div class="rigbt">
+                                <div class="rigbt-color"></div>
+                                <span>3类</span>
+                                <span>(C级)</span>
+                                <span>桥梁</span>
+                            </div>
+                            <div class="rigbt">
+                                <div class="rigbt-color"></div>
+                                <span>4类</span>
+                                <span>(D级)</span>
+                                <span>桥梁</span>
+                            </div>
+                            <div class="rigbt">
+                                <div class="rigbt-color"></div>
+                                <span>5类</span>
+                                <span>(E级)</span>
+                                <span>桥梁</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="threeDbox" class="inone inthree">
+                        <!-- <div class="inthree-san"></div> -->
+                        <i class="inthree-icon"></i>
+                        <span>三维模式</span>
+                    </div>
+                </section>
+                <!-- 悬浮内容 -->
+                <section>
+					
+                    <div id="mark" class="mark"></div>
+                    <div id="dialog" class="dialog">
+                        <i id="dialogClose" class="dialog-icon"></i>
+                        <p id="dialogTitle" class="dialog-title">
+                            <span>张三</span>
+                            <span id="zhangdate"></span>
+                        </p>
+                        <div class="context">
+                            <div class="context-ele">
+                                <label>病害记录：</label>
+                                <span>100条</span>
+                            </div>
+                            <div class="context-ele">
+                                <label>病害记录：</label>
+                                <span>100条</span>
+                            </div>
+                            <div class="context-ele">
+                                <label>专项记录：</label>
+                                <span>20条</span>
+                            </div>
+                            <div class="context-ele">
+                                <label>专项记录：</label>
+                                <span>20条</span>
+                            </div>
+                            <button type="button" id="dialogCancel"
+                                class="layui-btn layui-btn-normal dialog-cancel">关闭</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+	
+	
+	<script>
+	
+	var map = new BMapGL.Map('map'); // 创建Map实例
+	map.centerAndZoom(new BMapGL.Point(116.404, 39.915), 7); // 初始化地图,设置中心点坐标和地图级别
+	map.enableScrollWheelZoom(true); // 开启鼠标滚轮缩放
+	//map.setMapType(BMAP_EARTH_MAP);
+		var mapZoom= map.getZoom();
+		
+		
+		
+			 var marker1 = new BMapGL.Marker(new BMapGL.Point(116.404, 39.925));
+			 var marker2 = new BMapGL.Marker(new BMapGL.Point(116.404, 39.915));
+			 var marker3 = new BMapGL.Marker(new BMapGL.Point(116.395, 39.935));
+			 var marker4 = new BMapGL.Marker(new BMapGL.Point(116.415, 39.931));
+			 
+			 marker1.addEventListener('click',function(){
+				 console.log(marker1);
+			 })
+			 //在地图上添加点标记
+			 map.addOverlay(marker1);
+			 map.addOverlay(marker2);
+			 map.addOverlay(marker3);
+			 map.addOverlay(marker4);
+			 var data = [];
+			 
+			 var citys = [
+			     '北京',
+			     '天津',
+			     '上海',
+			     '重庆',
+			     '石家庄',
+			     '太原',
+			     '呼和浩特',
+			     '哈尔滨',
+			     '长春',
+			     '沈阳',
+			     '济南',
+			     '南京',
+			     '合肥',
+			     '杭州',
+			     '南昌',
+			     '福州',
+			     '郑州',
+			     '武汉',
+			     '长沙',
+			     '广州',
+			     '南宁',
+			     '西安',
+			     '银川',
+			     '兰州',
+			     '西宁',
+			     '乌鲁木齐',
+			     '成都',
+			     '贵阳',
+			     '昆明',
+			     '拉萨',
+			     '海口'
+			 ];
+			 
+			 var randomCount = 100000;
+			 console.log(11);
+			 // 构造数据
+			 while (randomCount--) {
+			     var cityCenter = mapv.utilCityCenter.getCenterByCityName(
+			         citys[parseInt(Math.random() * citys.length, 10)]
+			     );
+			     data.push({
+			         geometry: {
+			             type: 'Point',
+			             coordinates: [cityCenter.lng - 2 + Math.random() * 4, cityCenter.lat - 2 + Math.random() * 4]
+			         },
+			          properties: {
+			                 
+			                 icon: 'img/icon/e.png',
+							 width:  26,
+							 height:  36
+			             }
+			     });
+			 }
+			 
+			 var view = new mapvgl.View({
+				  effects: [new mapvgl.BloomEffect()],
+			     map: map,
+			 	
+			 });
+			 
+			 var clusterLayer = new mapvgl.ClusterLayer({
+			     minSize: 30, // 聚合点显示的最小直径
+			     maxSize: 50, // 聚合点显示的最大直径
+			     clusterRadius: 150, // 聚合范围半径
+			     gradient: {0: 'blue', 0.5: 'green', 1.0: 'red'}, // 聚合点颜色梯度
+			     maxZoom: 15, // 聚合的最大级别，当地图放大级别高于此值将不再聚合
+			     minZoom: 5, // 聚合的最小级别，当地图放大级别低于此值将不再聚合
+			     // 是否显示文字
+			     showText: true,
+			     // 开始聚合的最少点数，点数多于此值才会被聚合
+			     minPoints: 5,
+			     // 设置文字样式
+			     textOptions: {
+			         fontSize: 12,
+			         color: 'white',
+			         // 格式化数字显示
+			         format: function (count) {
+			             return count >= 10000 ? Math.round(count / 1000) + 'k'
+			             : count >= 1000 ? Math.round(count / 100) / 10 + 'k' : count;
+			         }
+			     },
+			     // 设置非聚合的点的icon
+			     // iconOptions: {
+			     //     width: 100 / 4,
+			     //     height: 153 / 4,
+			     //     icon: 'images/marker.png',
+			     // },
+			     enablePicked: true,
+			     onClick(e) {
+			         if (e.dataItem) {
+			             // 可通过dataItem下面的children属性拿到被聚合的所有点
+			             console.log(e.dataItem);
+			         }
+					 if(e.dataItem.children!=null){
+						 var lat=e.dataItem.children[Math.round(e.dataItem.children.length/2)].geometry.coordinates[0];
+						 var long=e.dataItem.children[Math.round(e.dataItem.children.length/2)].geometry.coordinates[1];
+						 			
+						 mapZoom++;			
+						 map.centerAndZoom(new BMapGL.Point(lat, long),mapZoom);
+					 }else{
+						 var x='500px';
+						 var y='500px';
+						 var point =new BMapGL.Point(e.dataItem.geometry.coordinates[0],e.dataItem.geometry.coordinates[1]);
+						var Pipoint= map.pointToPixel(point);
+						var Picenter=map.pointToPixel(map.getCenter());
+						 var Picenterx=Picenter.x;
+						var Picentery=Picenter.y;
+						
+						   if(Pipoint.x<Picenterx&&Pipoint.y<Picentery){
+							   x=Pipoint.x+'px';
+							   y=Pipoint.y+'px';
+						   }
+						 if(Pipoint.x<Picenterx&&Pipoint.y>Picentery){
+						 							   x=Pipoint.x+'px';
+						 							   y=(Pipoint.y-290)+'px';
+						 } if(Pipoint.x>Picenterx&&Pipoint.y>Picentery){
+							   x=Pipoint.x-510+'px';
+							   y=Pipoint.y-290+'px';
+						   } if(Pipoint.x>Picenterx&&Pipoint.y<Picentery){
+							   x=Pipoint.x-510+'px';
+							   y=Pipoint.y+'px';
+						   }
+						 
+						 layer.open({
+						   type: 2,
+						   title: false,
+						   shade: 0,
+						    offset: [y,x],
+						    skin:'demo-class',
+						   area: ['510px', '290px'],
+						   closeBtn:1, //不显示关闭按钮
+						scrollbar: false,
+						   content: 'bridgeShow.html',
+						  success: function(layero, index){
+							  
+							  
+						      
+						    }
+						 });
+						 layer.config({
+						   extend: 'skin/style.css', //加载您的扩展样式
+						     skin: 'demo-class'
+						 })
+					 }
+					 
+					 
+			     }
+			 });
+			
+			
+				 view.addLayer(clusterLayer);
+				 clusterLayer.setData(data);
+			 
+			
+			 
+		
+		
+	</script>
+
+</body>
+
+<script src="./js/layui.js"></script>
+<script src="./js/echarts.min.js"></script>
+<!-- <script src="./js/hidpi-canvas.min.js"></script> -->
+
+
+<script>
+    $('#trange').mouseenter(function () {
+        ercodemove(true);
+    });
+    $('#trange').mouseleave(function () {
+        ercodemove(false);
+    });
+    function ercodemove(type) {
+        if (type) {
+            $('#ercode').animate({
+                opacity: 1,
+                right: '-3px',
+                top: '-3px'
+            });
+            $('#toprightText').hide();
+        } else {
+            setTimeout(() => {
+                $('#ercode').animate({
+                    opacity: 0,
+                    right: '-20px',
+                    top: '-20px'
+                });
+                $('#toprightText').show();
+            }, 500);
+        }
+    }
+    //矩形一
+    laydate.render({
+        elem: '#dateRange',
+        range: true,
+        theme: '#393D49'
+    });
+    $('.btns').click(function (e) {
+        $('.btns').removeClass('bts-active');
+        $(this).addClass('bts-active');
+    });
+    // 矩形二绘制
+
+    function refresh() {
+        let canvas = document.getElementById('tutorial');
+        let canvas2 = document.getElementById('tutorial2');
+        let canvas3 = document.getElementById('tutorial3');
+        let canvas4 = document.getElementById('tutorial4');
+        let canvas5 = document.getElementById('tutorial5');
+        let canvas6 = document.getElementById('tutorial6');
+        let canvas7 = document.getElementById('tutorial7');
+        let canvas8 = document.getElementById('tutorial8');
+        // startdraw(canvas, 0);
+        // startdraw(canvas2, 1);
+        // startdraw(canvas3, 2);
+        // startdraw(canvas4, 3);
+        // startdraw(canvas5, 4);
+        // startdraw(canvas6, 5);
+        // startdraw(canvas7, 6);
+        // startdraw(canvas8, 7);
+        draw('tutorial', '#ffd74a');
+        draw('tutorial2', '#27d9ff');
+        draw('tutorial3', '#01fda1');
+        draw('tutorial4', '#4a72ff');
+        draw('tutorial5', '#4afff5');
+        draw('tutorial6', '#bfff4a');
+        draw('tutorial7', '#279cff');
+        draw('tutorial8', '#ff974a');
+        // 矩形二时间
+        let datatime = document.getElementById('datatime');
+        let today = dateFormat(new Date(), 'yyyy-MM-dd HH:mm:ss');
+        datatime.innerHTML = today;
+        let zhangdate = document.getElementById('zhangdate');
+        zhangdate.innerHTML = today;
+    }
+    function draw(id, color) {
+        let myChart = echarts.init(document.getElementById(id));
+        let radius = ['75%', '85%'];
+        let option = {
+            color: ['#05172d', color],
+            series: [
+                {
+                    type: 'pie',
+                    radius: radius,
+                    labelLine: {
+                        show: false
+                    },
+                    data: [
+                        {
+                            name: '11200',
+                            value: 30,
+                            label: {
+                                show: true,
+                                position: 'center',
+                                formatter: `11200\n{a|今日+0}`,
+                                color: color,
+                                fontSize: 14,
+                                fontWeight: 'bold',
+                                baseline: 'top',
+                                rich: {
+                                    a: {
+                                        color: 'red',
+                                        fontSize: 10,
+                                        lineHeight: 16
+                                    }
+                                },
+                            },
+                            labelLine: {
+                                show: false
+                            }
+                        },
+                        {
+                            name: '1',
+                            value: 70,
+                        }
+                    ]
+                },
+            ]
+        };
+        myChart.setOption(option);
+        window.addEventListener("resize", function () {
+            myChart.resize();
+        });
+    }
+    refresh();
+    //矩形三
+	
+	function add(){
+		layer.open({
+		  type: 2,
+		  title:'项目编辑',
+		  area: ['700px', '450px'],
+		  fixed: false, //不固定
+		 
+		  maxmin: true,
+		 
+		  content: 'xzxm.html'
+		});
+	};
+	var a='xx';
+	var b="1/7";
+	var x=eval(b);
+	
+    let itemContent = "<div class='itemmange item'><div class='item-topright'><span>编辑</span></div><div class='item-top'><span class='item-tl'>"+
+	a+
+	"</span><p>广东省2021年桥梁定期检查项目</p></div><label>广东省公路局</label><label>公路桥梁</label><label>负责人：张三</label><label>预计5天完成</label><div class='item-bottom'><div class='racrad'><div class='racrad-c' style='width:"
+	+toPercent(x)+"'></div></div><span>30/300</span></div></div>";
+    let itemTotal = [];
+    for (let i = 0; i <60; i++) {
+        itemTotal.push(itemContent);
+    }
+    // $('#itemmant').html(itemTotal);
+    $('.itemmange').click(function (e) {
+        $('.itemmange').removeClass('item-active');
+        $(this).addClass('item-active');
+    });
+    layui.use(['laypage', 'layer'], function () {
+        var laypage = layui.laypage
+            , layer = layui.layer;
+
+        //总页数低于页码总数
+        laypage.render({
+            elem: 'pages',
+            count: 60, //数据总数
+            limit: 2,
+            theme: '#1E9FFF',
+			
+            jump: function (obj) {
+				if(obj.count/obj.limit>7&&obj.count/obj.limit<=15){
+					$('.layui-laypage a, .layui-laypage span').addClass('pagemin1');
+				}
+				if(obj.count/obj.limit>15){
+					$('.layui-laypage a, .layui-laypage span').addClass('pagemin2');
+				}
+                $('#itemmant').html(function () {
+                    var arr = [], thisData = itemTotal.concat().splice(obj.curr * obj.limit - obj.limit, obj.limit);
+                    layui.each(thisData, function (index, item) {
+                        // item.replace(/2021/, index);
+                        let itemArr = item.split('桥梁定期检查项目');
+                        arr.push(itemArr[0] + '桥梁定期检查项目' + obj.curr + '-' + (index + 1) + itemArr[1]);
+                    });
+                    return arr.join('');
+                });
+            }
+        });
+    });
+	function toPercent(point) {
+	    var str = Number(point * 100).toFixed(2);
+	    str += "%";
+		
+	    return str;
+	};
+	window.onload=function(){
+		
+		
+		$('.item-topright').click(function(){
+			layer.open({
+			  type: 2,
+			  title:'项目编辑',
+			  area: ['700px', '450px'],
+			  fixed: false, //不固定
+			 
+			  maxmin: true,
+			 
+			  content: 'xzxm.html'
+			});
+		});
+		
+	};
+	$('#Padd').click(function(){
+		layer.open({
+		  type: 2,
+		  title:'项目编辑',
+		  area: ['700px', '450px'],
+		  fixed: false, //不固定
+		 
+		  maxmin: true,
+		  anim: 3,
+		success: function(layero, index){
+			
+		var a=	layer.getChildFrame('#btnsub', index);
+			
+			
+			a.click(function(){
+				layer.closeAll();
+			})
+			
+		},
+		  content: 'xzxm.html'
+		});
+	});
+	
+    //右上
+	var widthf='482px';
+	$('#people').click(function(){
+		layer.open({
+		  type: 2,
+		  title:'检测人员',
+		  area: ['1450px', widthf],
+		  fixed: false, //不固定
+		 anim: 1,
+		
+		 closeBtn:2,
+		 end: function(){
+		     $('.rigtop-item').removeClass('rigtop-item-active');
+			 
+		   },
+		 success: function(layero, index){
+				
+			var a=	layer.getChildFrame('#ww', index);
+				
+				
+				a.click(function(){
+					layer.closeAll();
+				})
+			// var domesc=	layero[0].getElementsByClassName('layui-layer-setwin')[0]
+			
+			// domesc.innerHTML='X';
+			// domesc.style.color='#FFFFFF';
+			// domesc.style.width='20px';
+			// domesc.style.height='20px';
+			// domesc.style.fontSize='150%';
+			// domesc.style.cursor='pointer';
+			// domesc.click(function(){
+			// 	Layer.close(index);
+			// })
+			layero[0].getElementsByClassName('layui-layer-content')[0].style.border='1px solid #277bbd';
+			layero[0].getElementsByClassName('layui-layer-content')[0].style.borderBottom='1px none #277bbd';
+			layero[0].getElementsByClassName('layui-layer-content')[0].style.borderTop='1px none #277bbd';
+			
+			layero[0].getElementsByClassName('layui-layer-title')[0].style.border='1px solid #277bbd';
+			layero[0].getElementsByClassName('layui-layer-title')[0].style.textAlign='center';
+			
+			 
+			
+			},
+		  content: 'People.html'
+		});
+	})
+	
+	
+	
+    $('.rigtop-item').click(function (e) {
+        $('.rigtop-item').removeClass('rigtop-item-active');
+        $(this).addClass('rigtop-item-active');
+    });
+
+    $('.inner-btn').click(function (e) {
+        $('.inner-btn').removeClass('inner-btn-active');
+        $(this).addClass('inner-btn-active');
+    });
+    //中下
+    function actMainbot(param) {
+        $('.main-bot-btn').removeClass('main-bot-btn-active');
+        param.addClass('main-bot-btn-active');
+
+    }
+    function checkActbtn() {
+        let totalWidth = $('.main-bot-btn').width() * 8, left = $('.main-bot-contbtn').position().left;
+        if (Math.floor(Math.abs(left)) == 0) {
+            $('.main-bot-btnl').removeClass('main-bot-btnl-act');
+        } else {
+            $('.main-bot-btnl').addClass('main-bot-btnl-act');
+        }
+        if (Math.floor(Math.abs(left)) >= Math.floor($('.main-bot-btn').width() * 4)) {
+            $('.main-bot-btnr').addClass('main-bot-btnr-act');
+        } else {
+            $('.main-bot-btnr').removeClass('main-bot-btnr-act');
+        }
+    }
+    $('.main-bot-btn').click(function (e) {
+        actMainbot($(this));
+    });
+    $('.main-bot-btnl').click(function (e) {
+        // let actIndex = $('.main-bot-btn-active').index();
+        // if (actIndex != 1) {
+        //     actMainbot($('.main-bot-btn').eq(actIndex - 2));
+        // }
+        let totalWidth = $('.main-bot-btn').width() * 8, left = $('.main-bot-contbtn').position().left;
+        if (Math.floor(Math.abs(left)) > 0) {
+            let btnWidth = $('.main-bot-btn').width(), count = Math.abs(left) ? Math.round(Math.abs(left) / btnWidth) - 1 : 0;
+            $('.main-bot-contbtn').css('left', `-${btnWidth * count}px`);
+        }
+        checkActbtn();
+    });
+    $('.main-bot-btnr').click(function (e) {
+        let totalWidth = $('.main-bot-btn').width() * 8, left = $('.main-bot-contbtn').position().left;
+        if (Math.floor(Math.abs(left)) < Math.floor($('.main-bot-btn').width() * 4)) {
+            let btnWidth = $('.main-bot-btn').width(), count = Math.abs(left) ? Math.round(Math.abs(left) / btnWidth) + 1 : 1;
+            $('.main-bot-contbtn').css('left', `-${btnWidth * count}px`);
+        }
+        checkActbtn();
+    });
+
+    $('#dialogCancel').click(function (e) {
+        $('#dialog').hide();
+    });
+    $('#dialogClose').click(function (e) {
+        $('#dialog').hide();
+    });
+    $('#mark').click(function (e) {
+        $('#dialog').show();
+    });
+    $('#threeDbox').click(function (e) {
+        $('#levelBox').toggle();
+    });
+
+    $('#rightbtn').click(function () {
+        if ($(this).hasClass('rigtop-cy-act')) {
+            $('#rightcontent').animate({
+                opacity: 1,
+                left: 0,
+                width: '100%'
+            });
+            $(this).removeClass('rigtop-cy-act');
+        } else {
+            $('#rightcontent').animate({
+                opacity: 0,
+                width: 0,
+                left: '100%'
+            });
+            $(this).addClass('rigtop-cy-act');
+        }
+    });
+
+
+    //鼠标按下的函数
+    var box = document.getElementById("dialog");
+    var dragBar = document.getElementById("dialogTitle");
+    dragBar.onmousedown = function (ev) {
+        var oEvent = ev || event;
+        //求出鼠标和box的位置差值
+        var x = oEvent.clientX - box.offsetLeft;
+        var y = oEvent.clientY - box.offsetTop;
+        //鼠标移动的函数
+        //把事件加在document上，解决因为鼠标移动太快时，
+        //鼠标超过box后就没有了拖拽的效果的问题
+        document.onmousemove = function (ev) {
+            var oEvent = ev || event;
+            //只能拖动窗口标题才能移动
+            if (oEvent.target.offsetParent && oEvent.target.offsetParent.id != 'dialog') {
+                return;
+            }
+            //保证拖拽框一直保持在浏览器窗口内部，不能被拖出的浏览器窗口的范围
+            var l = oEvent.clientX - x;
+            var t = oEvent.clientY - y;
+            if (l < 0) {
+                l = 0;
+
+            } else if (l > document.documentElement.clientWidth - box.offsetWidth) {
+                l = document.documentElement.clientWidth - box.offsetWidth;
+            }
+            if (t < 0) {
+                t = 0;
+            } else if (t > document.documentElement.clientHeight - box.offsetHeight) {
+                t = document.documentElement.clientHeight - box.offsetHeight;
+            }
+            box.style.left = l + "px";
+            box.style.top = t + "px";
+        }
+        //鼠标抬起的函数
+        document.onmouseup = function () {
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+        //火狐浏览器在拖拽空div时会出现bug
+        //return false阻止默认事件，解决火狐的bug
+        return false;
+    }
+</script>
+<script>
+
+    layui.use('dropdown', function () {
+        var dropdown = layui.dropdown
+        dropdown.render({
+            elem: '#personCenter', //可绑定在任意元素中，此处以上述按钮为例
+            className:'person-dialog',
+            data: [
+                {
+                    title: '个人中心',
+                    id: 100
+                },
+                {
+                    title: '修改密码',
+                    id: 101
+                },
+            ],
+        });
+    });
+</script>
+
+	
+</html>

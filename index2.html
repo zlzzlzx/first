@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>朗进智能桥梁检测系统</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/laydate.css">
+    <link rel="stylesheet" href="./css/layui.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="./js/canvas.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/laydate.js"></script>
+</head>
+
+<body>
+    <section class="main rect">
+        <div class="w-topleft">
+            <div class="triangle-topleft">
+                <div class="triangle-topleft-cont"></div>
+            </div>
+        </div>
+        <div id="trange" class="er-range"></div>
+        <div class="w-topright"></div>
+        <div id="toprightText" class="topright-text">下载APP</div>
+        <div id="ercode" class="ercode">
+            <img src="./img/ercode.png">
+        </div>
+        <div class="w-bottomleft">
+            <div class="triangle-bottomleft">
+                <div class="triangle-bottomleft-cont"></div>
+            </div>
+        </div>
+        <div class="w-bottomright">
+            <div class="triangle-bottomright">
+                <div class="triangle-bottomright-cont"></div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="bg">
+                <section class="left-cont left-cont2">
+                    <!-- 左侧矩形一 -->
+                    <div class="inone rectcontent">
+                        <div class="rectcontent-topleft"></div>
+                        <div class="rectcontent-topleft2"></div>
+                        <div class="rectcontent-topright"></div>
+                        <div class="rectcontent-topright2"></div>
+                        <div class="rectcontent-bottomleft"></div>
+                        <div class="rectcontent-bottomleft2"></div>
+                        <div class="rectcontent-bottomright"></div>
+                        <div class="rectcontent-bottomright2"></div>
+                        <div class="inone-cont qiao-cont">
+                            <div class="qitem">
+                                <div class="qitem-left">
+                                    <div class="qitem-left-icon"></div>
+                                    <div class="qitem-left-line"></div>
+                                </div>
+                                <div class="qitem-right">
+                                    <div class="qitem-right-title">
+                                        <label>项目：湖南省桥梁定期检测项目01（5个）</label>
+                                        <span>2021-06-08</span>
+                                    </div>
+                                    <p class="qitem-right-cont">
+                                        <label>人员：</label>
+                                        记录人、参加人、张三、张思
+                                    </p>
+                                    <p class="qitem-right-cont">
+                                        <label>设备：</label>
+                                        回弹仪（ID1）、回弹仪（ID3）、 保护层厚度测试仪（ID5）
+                                    </p>
+                                    <p class="qitem-right-cont">
+                                        <label>桥梁：</label>
+                                        1#桥梁、2#桥梁、3#桥梁
+                                    </p>
+                                    <p class="qitem-right-cont">
+                                        <label>人员：</label>
+                                        记录人、参加人、张三、张思
+                                    </p>
+                                    <div class="qitem-right-pic">
+                                        <img class="qitem-right-pic-t" src="./img/img_03.png">
+                                        <img class="qitem-right-pic-t" src="./img/img_05.png">
+                                        <img class="qitem-right-pic-t" src="./img/img_07.png">
+                                        <img class="qitem-right-pic-t" src="./img/img_09.png">
+                                        <img class="qitem-right-pic-t" src="./img/img_11.png">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="qitem">
+                                <div class="qitem-left">
+                                    <div class="qitem-left-icon"></div>
+                                    <div class="qitem-left-line"></div>
+                                </div>
+                                <div class="qitem-right">
+                                    <div class="qitem-right-title">
+                                        <label>项目：湖南省桥梁定期检测项目01（5个）</label>
+                                        <span>2021-06-08</span>
+                                    </div>
+                                    <p class="qitem-right-cont">
+                                        <label>人员：</label>
+                                        记录人、参加人、张三、张思
+                                    </p>
+                                    <p class="qitem-right-cont">
+                                        <label>设备：</label>
+                                        回弹仪（ID1）、回弹仪（ID3）、 保护层厚度测试仪（ID5）
+                                    </p>
+                                    <p class="qitem-right-cont">
+                                        <label>桥梁：</label>
+                                        1#桥梁、2#桥梁、3#桥梁
+                                    </p>
+                                    <p class="qitem-right-cont">
+                                        <label>人员：</label>
+                                        记录人、参加人、张三、张思
+                                    </p>
+                                    <div class="qitem-right-pic">
+                                        <img class="qitem-right-pic-t" src="./img/img_03.png">
+                                        <img class="qitem-right-pic-t" src="./img/img_05.png">
+                                        <img class="qitem-right-pic-t" src="./img/img_07.png">
+                                        <img class="qitem-right-pic-t" src="./img/img_09.png">
+                                        <img class="qitem-right-pic-t" src="./img/img_11.png">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="qitem">
+                                <div class="qitem-left">
+                                    <div class="qitem-left-icon"></div>
+                                    <!-- <div class="qitem-left-line"></div> -->
+                                </div>
+                                <div class="qitem-right">
+                                    <div class="qitem-right-title">
+                                        <label>项目：湖南省桥梁定期检测项目01（5个）</label>
+                                        <span>2021-06-08</span>
+                                    </div>
+                                    <p class="qitem-right-cont">
+                                        <label>人员：</label>
+                                        记录人、参加人、张三、张思
+                                    </p>
+                                    <p class="qitem-right-cont">
+                                        <label>设备：</label>
+                                        回弹仪（ID1）、回弹仪（ID3）、 保护层厚度测试仪（ID5）
+                                    </p>
+                                    <p class="qitem-right-cont">
+                                        <label>桥梁：</label>
+                                        1#桥梁、2#桥梁、3#桥梁
+                                    </p>
+                                    <p class="qitem-right-cont">
+                                        <label>人员：</label>
+                                        记录人、参加人、张三、张思
+                                    </p>
+                                    <div class="qitem-right-pic">
+                                        <img class="qitem-right-pic-t" src="./img/img_03.png">
+                                        <img class="qitem-right-pic-t" src="./img/img_05.png">
+                                        <img class="qitem-right-pic-t" src="./img/img_07.png">
+                                        <img class="qitem-right-pic-t" src="./img/img_09.png">
+                                        <img class="qitem-right-pic-t" src="./img/img_11.png">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- 中部 -->
+                <section class="main-center">
+                    <div class="main-top">
+                        <p>朗进智能桥梁检测系统</p>
+                    </div>
+                    <div class="main-bottom">
+                        <div class="main-bot-bar1"></div>
+                        <div class="main-bot-bar2"></div>
+                        <div class="main-bot-bar3"></div>
+                        <div class="main-bot-bg">
+                            <div class="main-bot-btnl"></div>
+                            <div class="main-bot-cont">
+                                <div class="main-bot-contbtn">
+                                    <div class="main-bot-btn main-bot-btn-active"><i
+                                            class="main-bot-icon main-bot-icon1"></i>检测日志</div>
+                                    <div class="main-bot-btn"><i class="main-bot-icon main-bot-icon2"></i>内页报告</div>
+                                    <div class="main-bot-btn"><i class="main-bot-icon main-bot-icon3"></i>外业服务</div>
+                                    <div class="main-bot-btn"><i class="main-bot-icon main-bot-icon4"></i>项目分析</div>
+                                    <div class="main-bot-btn"><i class="main-bot-icon main-bot-icon1"></i>检测日志</div>
+                                    <div class="main-bot-btn"><i class="main-bot-icon main-bot-icon2"></i>内页报告</div>
+                                    <div class="main-bot-btn"><i class="main-bot-icon main-bot-icon3"></i>外业服务</div>
+                                    <div class="main-bot-btn"><i class="main-bot-icon main-bot-icon4"></i>项目分析</div>
+                                </div>
+                            </div>
+                            <div class="main-bot-btnr"></div>
+                        </div>
+                        <div class="main-bot-bar4"></div>
+                        <div class="main-bot-bar5"></div>
+                        <div class="main-bot-bar6"></div>
+                    </div>
+                </section>
+
+                <section class="right-cont">
+                    <!-- 右侧顶部 -->
+                    <div class="right-top">
+                        <div class="rigtop-item">
+                            <i class="cy-red"></i>
+                            <div class="rigtop-cy">
+                                <i class="icon rigtop-icon"></i>
+                            </div>
+                            <div class="rigtop-ract">常用功能</div>
+                        </div>
+                        <div class="rigtop-item">
+                            <i class="cy-red"></i>
+                            <div class="rigtop-cy">
+                                <i class="icon rigtop-icon"></i>
+                            </div>
+                            <div class="rigtop-ract">常用功能</div>
+                        </div>
+                        <div class="rigtop-item rigtop-item-active">
+                            <i class="cy-red"></i>
+                            <div class="rigtop-cy">
+                                <i class="icon rigtop-icon"></i>
+                            </div>
+                            <div class="rigtop-ract">常用功能</div>
+                        </div>
+                        <div class="rigtop-item">
+                            <i class="cy-red"></i>
+                            <div class="rigtop-cy">
+                                <i class="icon rigtop-icon"></i>
+                            </div>
+                            <div class="rigtop-ract">常用功能</div>
+                        </div>
+                        <div class="rigtop-item">
+                            <i class="cy-red"></i>
+                            <div class="rigtop-cy">
+                                <i class="icon rigtop-icon"></i>
+                            </div>
+                            <div class="rigtop-ract">常用功能</div>
+                        </div>
+                        <div class="rigtop-item">
+                            <div class="rigtop-cy">
+                                <i class="icon rigtop-icon2"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="rectcontent right-ract">
+                        <div class="rectcontent-topleft"></div>
+                        <div class="rectcontent-topleft2"></div>
+                        <div class="rectcontent-topright"></div>
+                        <div class="rectcontent-topright2"></div>
+                        <div class="rectcontent-bottomleft"></div>
+                        <div class="rectcontent-bottomleft2"></div>
+                        <div class="rectcontent-bottomright"></div>
+                        <div class="rectcontent-bottomright2"></div>
+                        <div class="inner">
+                            <div class="inner-btn">
+                                <i class="icon cycle"></i>
+                                <span>检测桥梁</span>
+                            </div>
+                            <div class="inner-btn">
+                                <i class="icon person"></i>
+                                <span>现场人员</span>
+                            </div>
+                            <div class="inner-btn">
+                                <i class="icon shebei"></i>
+                                <span>现场设备</span>
+                            </div>
+                            <div class="inner-btn inner-btn-active">
+                                <i class="icon edit"></i>
+                                <span>病害记录</span>
+                            </div>
+                            <div class="inner-btn">
+                                <i class="icon bar"></i>
+                                <span>专项数量 </span>
+                            </div>
+                            <div class="inner-btn">
+                                <i class="icon postion"></i>
+                                <span>我的位置 </span>
+                            </div>
+                            <div class="inner-btn">
+                                <i class="icon screen"></i>
+                                <span>全屏 </span>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="right-person-bg"></div>
+                    <div id="personCenter" class="right-person"></div>
+
+                    <!-- 右侧底部 -->
+                    <div id="levelBox" class="inone rectcontent rightbot">
+                        <div class="rectcontent-topleft"></div>
+                        <div class="rectcontent-topleft2"></div>
+                        <div class="rectcontent-topright"></div>
+                        <div class="rectcontent-topright2"></div>
+                        <div class="rectcontent-bottomleft"></div>
+                        <div class="rectcontent-bottomleft2"></div>
+                        <div class="rectcontent-bottomright"></div>
+                        <div class="rectcontent-bottomright2"></div>
+                        <div class="inone-cont">
+                            <div class="rigbt">
+                                <div class="rigbt-color"></div>
+                                <span>1类</span>
+                                <span>(A级)</span>
+                                <span>桥梁</span>
+                            </div>
+                            <div class="rigbt">
+                                <div class="rigbt-color"></div>
+                                <span>2类</span>
+                                <span>(B级)</span>
+                                <span>桥梁</span>
+                            </div>
+                            <div class="rigbt">
+                                <div class="rigbt-color"></div>
+                                <span>3类</span>
+                                <span>(C级)</span>
+                                <span>桥梁</span>
+                            </div>
+                            <div class="rigbt">
+                                <div class="rigbt-color"></div>
+                                <span>4类</span>
+                                <span>(D级)</span>
+                                <span>桥梁</span>
+                            </div>
+                            <div class="rigbt">
+                                <div class="rigbt-color"></div>
+                                <span>5类</span>
+                                <span>(E级)</span>
+                                <span>桥梁</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="threeDbox" class="inone inthree">
+                        <!-- <div class="inthree-san"></div> -->
+                        <i class="inthree-icon"></i>
+                        <span>三维模式</span>
+                    </div>
+                </section>
+                <!-- 悬浮内容 -->
+                <section>
+                    <div id="mark" class="mark"></div>
+                    <div id="dialog" class="dialog">
+                        <i id="dialogClose" class="dialog-icon"></i>
+                        <p id="dialogTitle" class="dialog-title">
+                            <span>张三</span>
+                            <span id="zhangdate"></span>
+                        </p>
+                        <div class="context">
+                            <div class="context-ele">
+                                <label>病害记录：</label>
+                                <span>100条</span>
+                            </div>
+                            <div class="context-ele">
+                                <label>病害记录：</label>
+                                <span>100条</span>
+                            </div>
+                            <div class="context-ele">
+                                <label>专项记录：</label>
+                                <span>20条</span>
+                            </div>
+                            <div class="context-ele">
+                                <label>专项记录：</label>
+                                <span>20条</span>
+                            </div>
+                            <button type="button" id="dialogCancel"
+                                class="layui-btn layui-btn-normal dialog-cancel">关闭</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</body>
+<script src="./js/layui.js"></script>
+<script>
+    $('#trange').mouseenter(function () {
+        ercodemove(true);
+    });
+    $('#trange').mouseleave(function () {
+        ercodemove(false);
+    });
+    function ercodemove(type) {
+        if (type) {
+            $('#ercode').animate({
+                opacity: 1,
+                right: '-10px',
+                top: '-4px'
+            });
+            $('#toprightText').hide();
+        } else {
+            $('#ercode').animate({
+                opacity: 0,
+                right: '-20px',
+                top: '-20px'
+            });
+            $('#toprightText').show();
+        }
+    }
+    let today = dateFormat(new Date(), 'yyyy-MM-dd HH:mm:ss');
+    let zhangdate = document.getElementById('zhangdate');
+    zhangdate.innerHTML = today;
+    //矩形三
+    $('.qitem').click(function (e) {
+        $('.qitem .qitem-right').removeClass('qitem-right-act');
+        let index = $(this).index();
+        $('.qitem').eq(index).find('.qitem-right').addClass('qitem-right-act');
+    });
+    //右上
+    $('.rigtop-item').click(function (e) {
+        $('.rigtop-item').removeClass('rigtop-item-active');
+        $(this).addClass('rigtop-item-active');
+    });
+
+    $('.inner-btn').click(function (e) {
+        $('.inner-btn').removeClass('inner-btn-active');
+        $(this).addClass('inner-btn-active');
+    });
+    //中下
+    function actMainbot(param) {
+        $('.main-bot-btn').removeClass('main-bot-btn-active');
+        param.addClass('main-bot-btn-active');
+
+    }
+    function checkActbtn() {
+        let totalWidth = $('.main-bot-btn').width() * 8, left = $('.main-bot-contbtn').position().left;
+        if (Math.floor(Math.abs(left)) == 0) {
+            $('.main-bot-btnl').removeClass('main-bot-btnl-act');
+        } else {
+            $('.main-bot-btnl').addClass('main-bot-btnl-act');
+        }
+        if (Math.floor(Math.abs(left)) >= Math.floor($('.main-bot-btn').width() * 4)) {
+            $('.main-bot-btnr').addClass('main-bot-btnr-act');
+        } else {
+            $('.main-bot-btnr').removeClass('main-bot-btnr-act');
+        }
+    }
+    $('.main-bot-btn').click(function (e) {
+        actMainbot($(this));
+    });
+    $('.main-bot-btnl').click(function (e) {
+        // let actIndex = $('.main-bot-btn-active').index();
+        // if (actIndex != 1) {
+        //     actMainbot($('.main-bot-btn').eq(actIndex - 2));
+        // }
+        let totalWidth = $('.main-bot-btn').width() * 8, left = $('.main-bot-contbtn').position().left;
+        if (Math.floor(Math.abs(left)) > 0) {
+            let btnWidth = $('.main-bot-btn').width(), count = Math.abs(left) ? Math.round(Math.abs(left) / btnWidth) - 1 : 0;
+            $('.main-bot-contbtn').css('left', `-${btnWidth * count}px`);
+        }
+        checkActbtn();
+    });
+    $('.main-bot-btnr').click(function (e) {
+        let totalWidth = $('.main-bot-btn').width() * 8, left = $('.main-bot-contbtn').position().left;
+        if (Math.floor(Math.abs(left)) < Math.floor($('.main-bot-btn').width() * 4)) {
+            let btnWidth = $('.main-bot-btn').width(), count = Math.abs(left) ? Math.round(Math.abs(left) / btnWidth) + 1 : 1;
+            $('.main-bot-contbtn').css('left', `-${btnWidth * count}px`);
+        }
+        checkActbtn();
+    });
+
+    $('#dialogCancel').click(function (e) {
+        $('#dialog').hide();
+    });
+    $('#mark').click(function (e) {
+        $('#dialog').show();
+    });
+    $('#dialogClose').click(function (e) {
+        $('#dialog').hide();
+    });
+    $('#threeDbox').click(function (e) {
+        $('#levelBox').toggle();
+    });
+//鼠标按下的函数
+var box = document.getElementById("dialog");
+    var dragBar = document.getElementById("dialogTitle");
+    dragBar.onmousedown = function (ev) {
+        var oEvent = ev || event;
+        //求出鼠标和box的位置差值
+        var x = oEvent.clientX - box.offsetLeft;
+        var y = oEvent.clientY - box.offsetTop;
+        //鼠标移动的函数
+        //把事件加在document上，解决因为鼠标移动太快时，
+        //鼠标超过box后就没有了拖拽的效果的问题
+        document.onmousemove = function (ev) {
+            var oEvent = ev || event;
+            //只能拖动窗口标题才能移动
+            if (oEvent.target.offsetParent && oEvent.target.offsetParent.id != 'dialog') {
+                return;
+            }
+            //保证拖拽框一直保持在浏览器窗口内部，不能被拖出的浏览器窗口的范围
+            var l = oEvent.clientX - x;
+            var t = oEvent.clientY - y;
+            if (l < 0) {
+                l = 0;
+
+            } else if (l > document.documentElement.clientWidth - box.offsetWidth) {
+                l = document.documentElement.clientWidth - box.offsetWidth;
+            }
+            if (t < 0) {
+                t = 0;
+            } else if (t > document.documentElement.clientHeight - box.offsetHeight) {
+                t = document.documentElement.clientHeight - box.offsetHeight;
+            }
+            box.style.left = l + "px";
+            box.style.top = t + "px";
+        }
+        //鼠标抬起的函数
+        document.onmouseup = function () {
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+        //火狐浏览器在拖拽空div时会出现bug
+        //return false阻止默认事件，解决火狐的bug
+        return false;
+    }
+</script>
+<script>
+    layui.use('dropdown', function () {
+        var dropdown = layui.dropdown
+        dropdown.render({
+            elem: '#personCenter', //可绑定在任意元素中，此处以上述按钮为例
+            className:'person-dialog',
+            data: [
+                {
+                    title: '个人中心',
+                    id: 100
+                },
+                {
+                    title: '修改密码',
+                    id: 101
+                },
+            ],
+        });
+    });
+</script>
+</html>
